@@ -1,0 +1,22 @@
+{
+  "name": "ali_server",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "axios-retry": "^3.2.4",
+    "config": "^3.3.7",
+    "download": "^8.0.0",
+    "express": "^4.17.3",
+    "moment": "^2.29.1",
+    "mongodb": "^4.4.1",
+    "mongoose": "^6.2.9",
+    "node-cron": "^3.0.0",
+    "puppeteer": "^13.5.2",
+    "user-agents": "^1.0.953"
+  }
+}
