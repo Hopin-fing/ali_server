@@ -27,11 +27,7 @@ app.use('/api/v1/docs', require('./routes/docs.routes'));
             for (const cabinetName of Object.keys(config["cabinets"])) {
                 const browser = await puppeteer.launch({
                         product: 'firefox',
-<<<<<<< HEAD
                         headless: false,
-=======
-                        headless: false
->>>>>>> c53cd7e63269b20d371d7da1bd0b03a78c95375f
                         // devtools: true
                     }),
                     page = await browser.newPage()
