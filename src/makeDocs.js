@@ -10,7 +10,6 @@ const makeDocs = async (page, browser, url, cabinetName) => {
 
     await page.goto('https://seller.aliexpress.ru/orders/shipping')
 
-    // await page.goto('https://seller.aliexpress.ru/orders/shipping')
     await page.waitForTimeout(10000);
 
     await changeStatus(page,
@@ -26,8 +25,10 @@ const makeDocs = async (page, browser, url, cabinetName) => {
 
         page.click(".pagination_limit__zV_Ib:nth-child(3)")
 
-        page.waitForSelector('input#columnCheckBox')
-        page.click('input#columnCheckBox')
+        await page.waitForTimeout(3000);
+
+        page.waitForSelector('input.check-box_input__1rZqL#columnCheckBox')
+        page.click('input.check-box_input__1rZqL#columnCheckBox')
         await page.waitForTimeout(1000);
 
         page.waitForSelector('.shipment-list_shipping__3uB4i button.button__type_primary__ajB28')
