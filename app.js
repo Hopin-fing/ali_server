@@ -23,11 +23,11 @@ app.use('/api/v1/docs', require('./routes/docs.routes'));
     try {
         app.listen(PORT_CRON, () => console.log(`App has been started on port ${PORT_CRON}...`))
 
-        cron.schedule('*/30 * * * *', async () => {
+        // cron.schedule('*/30 * * * *', async () => {
             for (const cabinetName of Object.keys(config["cabinets"])) {
                 const browser = await puppeteer.launch({
-                        product: 'firefox'
-                        // headless: false,
+                        product: 'firefox',
+                        headless: false,
                         // devtools: true
                     }),
                     page = await browser.newPage()
@@ -39,10 +39,10 @@ app.use('/api/v1/docs', require('./routes/docs.routes'));
                 console.log("end")
 
             }
-        })
+        // })
     } catch (e) {
-        process.exit(1)
         console.log("Error message", e.message)
+        process.exit(1)
     }
 
 })()
