@@ -25,6 +25,8 @@ const makeDocs = async (page, browser, url, cabinetName) => {
 
         let table = await page.$$('tbody.table_tableBody__1xqxz tr')
 
+
+        //Separation orders
         while (table.length > 0) {
             await page.click('#raw')
             page.click('.shipment-list_shipping__3uB4i button.button__type_primary__ajB28')
