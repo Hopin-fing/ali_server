@@ -26,7 +26,7 @@ app.use('/api/v1/docs', require('./routes/docs.routes'));
         cron.schedule('*/30 * * * *', async () => {
             for (const cabinetName of Object.keys(config["cabinets"])) {
                 const browser = await puppeteer.launch({
-                        product: 'firefox',
+                        product: 'firefox'
                         // headless: false
                         // devtools: true
                     }),
