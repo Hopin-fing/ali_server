@@ -13,7 +13,7 @@ const makeDocs = async (page, browser, url, cabinetName) => {
     await page.waitForTimeout(10000);
 
     await changeStatus(page,
-        '.builder_root__XKssE:not(.shipment-list_dateRange__1BDzQ) .popover_root__qiyPo',
+        'form div div:last-child .builder_root__XKssE .popover_root__qiyPo',
         "Ожидает добавления в лист передачи"
     )
     await page.waitForTimeout(2000);
@@ -23,21 +23,22 @@ const makeDocs = async (page, browser, url, cabinetName) => {
     if (isExistDoc) {
         // Create order list if new order exist
 
-        page.click(".pagination_limit__zV_Ib:nth-child(3)")
+        let table = await page.$$('tbody.table_tableBody__1xqxz tr')
 
-        await page.waitForTimeout(3000);
+        while (table.length > 0) {
+            await page.click('#raw')
+            page.click('.shipment-list_shipping__3uB4i button.button__type_primary__ajB28')
+            await page.waitForTimeout(1000)
+            page.waitForSelector('.standart_box__38Ycp .creation-step_actions__dyjt8 button.button__type_primary__ajB28')
+            page.click('.standart_box__38Ycp .creation-step_actions__dyjt8 button.button__type_primary__ajB28')
+            await page.waitForTimeout(3000)
+            await page.waitForSelector('.standart_box__38Ycp button.button__disabled__1pO2J', {hidden: true})
+            await page.waitForTimeout(1000)
+            await page.click(".focus-trap_root__lP7Ru button.standart_close__3YRL0")
+            await page.waitForTimeout(3000)
+            table = await page.$$('tbody.table_tableBody__1xqxz tr')
 
-        page.waitForSelector('input.check-box_input__1rZqL#columnCheckBox')
-        page.click('input.check-box_input__1rZqL#columnCheckBox')
-        await page.waitForTimeout(1000);
-
-        page.waitForSelector('.shipment-list_shipping__3uB4i button.button__type_primary__ajB28')
-        page.click('.shipment-list_shipping__3uB4i button.button__type_primary__ajB28')
-        await page.waitForTimeout(1000);
-
-        page.waitForSelector('.standart_box__38Ycp .creation-step_actions__dyjt8 button.button__type_primary__ajB28')
-        page.click('.standart_box__38Ycp .creation-step_actions__dyjt8 button.button__type_primary__ajB28')
-        await page.waitForTimeout(20000);
+        }
 
     }
 
