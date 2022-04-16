@@ -4,7 +4,7 @@ const {mongoose} = require('mongoose'),
             type: String,
             unique: true
         },
-        orders: [String]
+        numOrder: String
     })
 
 module.exports = mongoose.model('Docs', docsSchema)
