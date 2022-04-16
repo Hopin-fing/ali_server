@@ -1,5 +1,4 @@
-const moment = require("moment"),
-    download = require('download'),
+const download = require('download'),
     {sendRequestPost} = require("../requests")
 
 const handingTrnList = async (page, browser, number, url, cabinetName) => {
@@ -30,18 +29,17 @@ const handingTrnList = async (page, browser, number, url, cabinetName) => {
 
     await page.waitForTimeout(10000);
     const labelPage = await browser.pages().then(item => item[2]),
-        currentDate = moment().format("YYYY_MM_DD__HH_mm_ss"),
-        path = `./data/${cabinetName}/${currentDate}/`
+        path = `./data/${cabinetName}/`
 
 
-    await download(labelPage.url(), path, {filename: "label.pdf"});
+    await download(labelPage.url(), path, {filename: `${number}_label.pdf`});
     await labelPage.close()
 
     await crtDoc.click()
     await page.waitForTimeout(10000);
     const docsUrl = await browser.pages()
 
-    await download(docsUrl[2].url(), path, {filename: "transfer_list.pdf"});
+    await download(docsUrl[2].url(), path, {filename: `${number}_tl.pdf`});
 
     const bodyReq = {
         transfer_list: numTrnList,
