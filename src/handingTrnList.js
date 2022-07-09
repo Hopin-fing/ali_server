@@ -25,7 +25,7 @@ const handingTrnList = async (page, browser, number, url, cabinetName) => {
 
     await page.waitForTimeout(10000);
     const labelPage = await browser.pages().then(item => item[2]),
-        path = `./data/${cabinetName}/`
+        path = `./data/Support/${cabinetName}/`
 
 
     await download(labelPage.url(), path, {filename: `${numOrder}_label.pdf`});
